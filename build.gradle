@@ -16,3 +16,21 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'App'
+    }
+}
+
+task runJar(dependsOn: ['build']) {
+    doLast {
+        javaexec {
+            main = '-jar'
+            args = [
+                    'build/libs/SuvivalWordGame-1.0-SNAPSHOT.jar'
+            ]
+        }
+    }
+}
+
